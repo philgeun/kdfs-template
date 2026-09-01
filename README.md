@@ -5,20 +5,21 @@
 ## 파일
 
 - `kdfs-conference.cls`: 학회 형식을 구현한 문서 클래스
+- `latexmkrc`: Overleaf의 기본 빌드를 XeLaTeX로 자동 전환하는 설정
 - `main.tex`: 제목, 초록, 표, 그림, 수식, 참고문헌 예제
 - `references.bib`: IEEE 순번 인용 예제
 - `main.pdf`: 실제 컴파일한 시각 검증본
 
 ## 컴파일
 
-Overleaf에서는 Compiler를 `XeLaTeX`로 선택한 뒤 `main.tex`를 컴파일한다. 로컬에서는 다음 중 하나를 사용한다.
+Overleaf에서는 저장소 루트의 `latexmkrc`가 기본 pdfLaTeX 빌드 명령을 XeLaTeX로 전환한다. 프로젝트 설정에서 Compiler를 직접 선택할 수 있다면 `XeLaTeX`를 선택하는 방법도 권장한다. 로컬에서는 다음 중 하나를 사용한다.
 
 ```text
 tectonic main.tex
 latexmk -xelatex main.tex
 ```
 
-`pdfLaTeX`는 한글 시스템 글꼴을 직접 처리하지 못하므로 지원하지 않는다.
+`pdfLaTeX` 엔진 자체는 한글 시스템 글꼴을 직접 처리하지 못한다. 따라서 `latexmkrc`를 삭제하지 않아야 하며, 직접 명령을 실행할 때는 XeLaTeX 또는 Tectonic을 사용한다.
 
 ## 확인된 공식 규격
 
@@ -41,7 +42,7 @@ latexmk -xelatex main.tex
 
 ## 글꼴 대체
 
-공식 HWP는 `HY견명조`, `휴먼명조`, `돋움`을 사용한다. 이 클래스는 해당 글꼴이 설치된 경우 자동으로 사용한다. `휴먼명조` 또는 `돋움`이 없으면 각각 `Noto Serif KR`, `Noto Sans KR`로 대체한다. 대체 글꼴은 줄바꿈과 페이지 수를 바꿀 수 있으므로 최종 제출 전 반드시 PDF를 다시 확인한다.
+공식 HWP는 `HY견명조`, `휴먼명조`, `돋움`을 사용한다. 이 클래스는 해당 글꼴이 설치된 경우 자동으로 사용한다. 공식 글꼴이 없으면 데스크톱에서는 `Noto Serif KR`과 `Noto Sans KR`, Overleaf에서는 `Noto Serif CJK KR`과 `Noto Sans CJK KR`을 자동으로 선택한다. Latin 글꼴도 Times New Roman, Arial 또는 Consolas가 없으면 TeX Live 기본 대체 글꼴을 사용한다. 대체 글꼴은 줄바꿈과 페이지 수를 바꿀 수 있으므로 최종 제출 전 반드시 PDF를 다시 확인한다.
 
 ## 저자 정보 주의
 

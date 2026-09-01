@@ -10,7 +10,8 @@
 \ifXeTeX\else
   \ClassError{kdfs-conference}
     {This class requires XeLaTeX or Tectonic}
-    {Select XeLaTeX in Overleaf, or compile with tectonic.}
+    {Keep latexmkrc at the Overleaf project root, select XeLaTeX in
+     Overleaf settings, or compile locally with tectonic.}
 \fi
 
 \RequirePackage{geometry}
@@ -41,16 +42,29 @@
 
 % Official HWP faces are HY견명조, 휴먼명조, and 돋움.
 % Noto fallbacks keep the class portable when Hancom fonts are unavailable.
+% Overleaf uses the Noto CJK family names, while some desktop systems expose
+% the Korean-specific Noto family names without the CJK infix.
+\IfFontExistsTF{Noto Serif KR}
+  {\def\KDFSDefaultSerif{Noto Serif KR}}
+  {\def\KDFSDefaultSerif{Noto Serif CJK KR}}
+\IfFontExistsTF{Noto Sans KR}{
+  \def\KDFSDefaultSans{Noto Sans KR}
+  \def\KDFSDefaultMono{Noto Sans KR}
+}{
+  \def\KDFSDefaultSans{Noto Sans CJK KR}
+  \def\KDFSDefaultMono{Noto Sans Mono CJK KR}
+}
+
 \IfFontExistsTF{HY견명조}{
   \newfontfamily\KDFSTitleLatin[BoldFont=*,BoldFeatures={FakeBold=1.8}]{HY견명조}
   \newfontfamily\KDFSTitleLatinSpaced[LetterSpace=8.0,BoldFont=*,BoldFeatures={FakeBold=1.8}]{HY견명조}
   \newCJKfontfamily\KDFSTitleCJK[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.8}]{HY견명조}
   \newCJKfontfamily\KDFSTitleCJKSpaced[Script=Default,LetterSpace=8.0,BoldFont=*,BoldFeatures={FakeBold=1.8}]{HY견명조}
 }{
-  \newfontfamily\KDFSTitleLatin[BoldFont=*,BoldFeatures={FakeBold=1.8}]{Noto Serif KR}
-  \newfontfamily\KDFSTitleLatinSpaced[LetterSpace=8.0,BoldFont=*,BoldFeatures={FakeBold=1.8}]{Noto Serif KR}
-  \newCJKfontfamily\KDFSTitleCJK[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.8}]{Noto Serif KR}
-  \newCJKfontfamily\KDFSTitleCJKSpaced[Script=Default,LetterSpace=8.0,BoldFont=*,BoldFeatures={FakeBold=1.8}]{Noto Serif KR}
+  \newfontfamily\KDFSTitleLatin[BoldFont=*,BoldFeatures={FakeBold=1.8}]{\KDFSDefaultSerif}
+  \newfontfamily\KDFSTitleLatinSpaced[LetterSpace=8.0,BoldFont=*,BoldFeatures={FakeBold=1.8}]{\KDFSDefaultSerif}
+  \newCJKfontfamily\KDFSTitleCJK[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.8}]{\KDFSDefaultSerif}
+  \newCJKfontfamily\KDFSTitleCJKSpaced[Script=Default,LetterSpace=8.0,BoldFont=*,BoldFeatures={FakeBold=1.8}]{\KDFSDefaultSerif}
 }
 
 \IfFontExistsTF{휴먼명조}{
@@ -59,18 +73,18 @@
   \newCJKfontfamily\KDFSBodyCJK[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{휴먼명조}
   \newCJKfontfamily\KDFSAbstractCJK[Script=Default,FakeStretch=0.96,LetterSpace=8.0,BoldFont=*,BoldFeatures={FakeBold=1.5}]{휴먼명조}
 }{
-  \newfontfamily\KDFSBodyLatin[BoldFont=*,BoldFeatures={FakeBold=1.5}]{Noto Serif KR}
-  \newfontfamily\KDFSAbstractLatin[FakeStretch=0.96,LetterSpace=8.0,BoldFont=*,BoldFeatures={FakeBold=1.5}]{Noto Serif KR}
-  \newCJKfontfamily\KDFSBodyCJK[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{Noto Serif KR}
-  \newCJKfontfamily\KDFSAbstractCJK[Script=Default,FakeStretch=0.96,LetterSpace=8.0,BoldFont=*,BoldFeatures={FakeBold=1.5}]{Noto Serif KR}
+  \newfontfamily\KDFSBodyLatin[BoldFont=*,BoldFeatures={FakeBold=1.5}]{\KDFSDefaultSerif}
+  \newfontfamily\KDFSAbstractLatin[FakeStretch=0.96,LetterSpace=8.0,BoldFont=*,BoldFeatures={FakeBold=1.5}]{\KDFSDefaultSerif}
+  \newCJKfontfamily\KDFSBodyCJK[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{\KDFSDefaultSerif}
+  \newCJKfontfamily\KDFSAbstractCJK[Script=Default,FakeStretch=0.96,LetterSpace=8.0,BoldFont=*,BoldFeatures={FakeBold=1.5}]{\KDFSDefaultSerif}
 }
 
 \IfFontExistsTF{돋움}{
   \newfontfamily\KDFSSansLatin[BoldFont=*,BoldFeatures={FakeBold=1.5}]{돋움}
   \newCJKfontfamily\KDFSSansCJK[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{돋움}
 }{
-  \newfontfamily\KDFSSansLatin[BoldFont=*,BoldFeatures={FakeBold=1.5}]{Noto Sans KR}
-  \newCJKfontfamily\KDFSSansCJK[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{Noto Sans KR}
+  \newfontfamily\KDFSSansLatin[BoldFont=*,BoldFeatures={FakeBold=1.5}]{\KDFSDefaultSans}
+  \newCJKfontfamily\KDFSSansCJK[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{\KDFSDefaultSans}
 }
 
 \newcommand{\KDFSTitleFace}{\KDFSTitleLatin\KDFSTitleCJK}
@@ -79,12 +93,18 @@
 \newcommand{\KDFSAbstractFace}{\KDFSAbstractLatin\KDFSAbstractCJK}
 \newcommand{\KDFSSansFace}{\KDFSSansLatin\KDFSSansCJK}
 
-\setCJKmainfont[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{Noto Serif KR}
-\setCJKsansfont[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{Noto Sans KR}
-\setCJKmonofont[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{Noto Sans KR}
-\setmainfont{Times New Roman}
-\setsansfont{Arial}
-\setmonofont{Consolas}
+\setCJKmainfont[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{\KDFSDefaultSerif}
+\setCJKsansfont[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{\KDFSDefaultSans}
+\setCJKmonofont[Script=Default,BoldFont=*,BoldFeatures={FakeBold=1.5}]{\KDFSDefaultMono}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}}
+  {\setmainfont{TeX Gyre Termes}}
+\IfFontExistsTF{Arial}
+  {\setsansfont{Arial}}
+  {\setsansfont{TeX Gyre Heros}}
+\IfFontExistsTF{Consolas}
+  {\setmonofont{Consolas}}
+  {\setmonofont{Latin Modern Mono}}
 
 \setlength{\parindent}{10pt}
 \setlength{\parskip}{0pt}
