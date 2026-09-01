@@ -6,9 +6,35 @@
 
 - `kdfs-conference.cls`: 학회 형식을 구현한 문서 클래스
 - `latexmkrc`: Overleaf의 기본 빌드를 XeLaTeX로 자동 전환하는 설정
-- `main.tex`: 제목, 초록, 표, 그림, 수식, 참고문헌 예제
+- `main.tex`: 메타데이터, 섹션과 참고문헌을 조립하는 루트 문서
+- `metadata.tex`: 제목, 국문 및 영문 요약, 주제어와 DOI
+- `sections/`: 번호 순서로 분리한 본문 섹션
 - `references.bib`: IEEE 순번 인용 예제
 - `main.pdf`: 실제 컴파일한 시각 검증본
+
+## 프로젝트 구조
+
+```text
+kdfs-template/
+├─ main.tex
+├─ metadata.tex
+├─ kdfs-conference.cls
+├─ latexmkrc
+├─ references.bib
+├─ sections/
+│  ├─ 01-introduction.tex
+│  ├─ 02-related-work.tex
+│  ├─ 03-methodology.tex
+│  ├─ 04-results.tex
+│  ├─ 05-discussion.tex
+│  ├─ 06-conclusion.tex
+│  └─ README.md
+└─ main.pdf
+```
+
+DFRWS가 사용하는 Elsevier 계열 LaTeX 작업 방식처럼 `main.tex`은 문서 조립만 담당하고, 메타데이터와 본문을 독립 파일로 분리했다. KDFS의 페이지와 서체 규격은 `kdfs-conference.cls`에 그대로 유지된다.
+
+섹션을 추가하거나 순서를 바꾸려면 `sections/`에 파일을 만들고 `main.tex`의 `\input{sections/...}` 목록을 수정한다. 관련 연구나 논의가 필요 없는 원고는 해당 입력 줄을 제거할 수 있다.
 
 ## 컴파일
 
@@ -50,7 +76,7 @@ latexmk -xelatex main.tex
 
 ## 사용 전 체크리스트
 
-1. `main.tex`의 제목, 국문 및 영문 요약, 주제어를 교체한다.
+1. `metadata.tex`의 제목, 국문 및 영문 요약, 주제어를 교체한다.
 2. 주제어가 각 언어별 5개 이내인지 확인한다.
 3. DOI가 배정되지 않았다면 `XXXXXXXXXXXXXXXXX` 상태를 학회 지침에 따라 처리한다.
 4. 참고문헌 항목을 영어로 작성하고 본문 인용 순서를 확인한다.

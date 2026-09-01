@@ -1,0 +1,43 @@
+\section{연구 방법}
+
+\subsection{표 사용의 예}
+
+표는 지면의 가로 가운데에 배치한다. 표 제목은 표의 위쪽에 놓고, 본문에서는 \textless Table 1\textgreater 과 같이 인용한다.
+
+\begin{table}[htbp]
+  \centering
+  \caption{디지털 증거 처리 단계의 예}
+  \label{tab:evidence-process}
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{|>{\centering\arraybackslash}p{50mm}|>{\centering\arraybackslash}p{60mm}|}
+    \hline
+    \rowcolor{black!15}\textbf{단계} & \textbf{검증 항목} \\
+    \hline
+    수집 & 원본 식별 및 해시 기록 \\
+    \hline
+    분석 & 도구, 버전 및 절차 기록 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{그림 사용의 예}
+
+그림은 글자처럼 취급하여 가운데에 배치한다. 실제 원고에서는 충분한 해상도의 그림을 사용하고, 축과 범례가 축소 후에도 읽히는지 확인한다.
+
+\begin{figure}[htbp]
+  \centering
+  \fbox{\parbox[c][38.52mm][c]{44.32mm}{\centering 그림 자리\\\small 고해상도 파일로 교체}}
+  \caption{디지털 증거 분석 절차의 예}
+  \label{fig:workflow}
+\end{figure}
+
+\subsubsection{수식 사용의 예}
+
+수식은 9\,pt를 기준으로 작성하고 번호를 오른쪽에 둔다. 본문 위아래에는 한 줄의 여유를 둔다.
+
+\begin{equation}
+  H(x)=\operatorname{SHA256}(x)
+  \label{eq:hash}
+\end{equation}
+
+식~\eqref{eq:hash}는 증거 객체 $x$의 무결성 확인에 사용할 수 있는 해시 표현의 예이다. 실제 연구에서는 알고리즘, 입력 범위, 도구 버전과 검증 절차를 함께 기술한다\cite{nist80086}.
