@@ -1,14 +1,73 @@
-\documentclass{article}
-\usepackage{graphicx} % Required for inserting images
+\documentclass{kdfs-conference}
 
-\title{kdfs-template}
-\author{andyjin777 }
-\date{September 2026}
+% The current official conference HWP does not show an author block.
+% Add author/affiliation information only if the organizer explicitly requests it.
+\kdfstitle{디지털 포렌식 연구 논문 제목}
+\kdfstitleen{Title of a Digital Forensics Research Paper}
+\kdfsabstract{본 문서는 한국디지털포렌식학회의 2026년 학술대회 논문투고양식을 바탕으로 작성한 LaTeX 예시이다. 실제 투고 시에는 연구 목적, 방법, 주요 결과와 결론을 간결하고 명확하게 기술한다.}
+\kdfsabstracten{This document demonstrates a LaTeX implementation of the 2026 conference paper format distributed by the Korea Digital Forensics Society. Replace this text with a concise statement of the research objective, method, principal results, and conclusion.}
+\kdfskeywords{디지털 포렌식, 디지털 증거, 침해사고 대응, 재현성, 증거 무결성}
+\kdfskeywordsen{digital forensics, digital evidence, incident response, reproducibility, evidence integrity}
+\kdfsdoi{XXXXXXXXXXXXXXXXX}
 
 \begin{document}
-
 \maketitle
 
-\section{Introduction}
+\section{서론}
+
+디지털 포렌식 연구 논문은 연구 문제와 기여를 명확히 제시하고, 분석 대상과 절차가 재현될 수 있도록 충분한 근거를 제공해야 한다. 이 예시는 학회가 공개한 양식과 제출 안내를 구현한 것으로, 실제 원고에서는 모든 주장과 인용을 검증해야 한다\cite{kdfs2026format}.
+
+본문은 10\,pt 명조 계열 글꼴과 160\% 행간을 사용한다. 각 문단의 첫 줄은 10\,pt 들여쓰며, 참고문헌은 본문에서 인용된 순서에 따라 번호를 부여한다. 현재 학술대회 안내는 참고문헌을 포함한 Full Paper 6쪽 이상을 권장하므로, 제출 전 최신 공지를 다시 확인한다.
+
+\section{연구 방법}
+
+\subsection{표 사용의 예}
+
+표는 지면의 가로 가운데에 배치한다. 표 제목은 표의 위쪽에 놓고, 본문에서는 \textless Table 1\textgreater 과 같이 인용한다.
+
+\begin{table}[htbp]
+  \centering
+  \caption{디지털 증거 처리 단계의 예}
+  \label{tab:evidence-process}
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{|>{\centering\arraybackslash}p{50mm}|>{\centering\arraybackslash}p{60mm}|}
+    \hline
+    \rowcolor{black!15}\textbf{단계} & \textbf{검증 항목} \\
+    \hline
+    수집 & 원본 식별 및 해시 기록 \\
+    \hline
+    분석 & 도구, 버전 및 절차 기록 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{그림 사용의 예}
+
+그림은 글자처럼 취급하여 가운데에 배치한다. 실제 원고에서는 충분한 해상도의 그림을 사용하고, 축과 범례가 축소 후에도 읽히는지 확인한다.
+
+\begin{figure}[htbp]
+  \centering
+  \fbox{\parbox[c][38.52mm][c]{44.32mm}{\centering 그림 자리\\\small 고해상도 파일로 교체}}
+  \caption{디지털 증거 분석 절차의 예}
+  \label{fig:workflow}
+\end{figure}
+
+\subsubsection{수식 사용의 예}
+
+수식은 9\,pt를 기준으로 작성하고 번호를 오른쪽에 둔다. 본문 위아래에는 한 줄의 여유를 둔다.
+
+\begin{equation}
+  H(x)=\operatorname{SHA256}(x)
+  \label{eq:hash}
+\end{equation}
+
+식~\eqref{eq:hash}는 증거 객체 $x$의 무결성 확인에 사용할 수 있는 해시 표현의 예이다. 실제 연구에서는 알고리즘, 입력 범위, 도구 버전과 검증 절차를 함께 기술한다\cite{nist80086}.
+
+\section{결론}
+
+본 예시는 제목, 국문 및 영문 요약, 장과 절, 표, 그림, 수식, IEEE 순번 참고문헌을 포함한다. 제출 전에는 학회가 배포한 최신 HWP 양식과 공지사항을 원고 PDF와 나란히 비교하고, 저자 정보와 익명성 요구를 운영진 안내에 따라 최종 확인한다.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
 
 \end{document}
